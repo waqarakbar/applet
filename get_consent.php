@@ -27,7 +27,7 @@ if ($settings) {
 
 $consent_url = $base_url.'/oauth/chooselocation?'.http_build_query([
     'response_type' => 'code',
-    'redirect_uri' => $server_url.'/access_token_data.php',
+    'redirect_uri' => $server_url.'/applet/access_token_data.php',
     'client_id' => $client_id,
     'scope' => $scope
 ]);
