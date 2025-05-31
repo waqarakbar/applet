@@ -16,6 +16,7 @@ if ($settings) {
     $client_secret = decryptData($settings['client_secret'], SECRET_KEY);
     $sos_key = decryptData($settings['sos_key'], SECRET_KEY);
     $server_url = decryptData($settings['server_url'], SECRET_KEY);
+    $start_date = $settings['start_date'];
     $scope = decryptData($settings['scope'], SECRET_KEY);
 }
 ?>
@@ -55,6 +56,11 @@ if ($settings) {
             <div class="mb-3">
                 <label for="sos_key" class="form-label">SOS Key</label>
                 <input type="text" class="form-control" id="sos_key" name="sos_key" value="<?php echo $sos_key; ?>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="<?php echo $start_date; ?>" required>
             </div>
 
             <div class="mb-3">
