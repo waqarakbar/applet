@@ -1,1 +1,1 @@
-<?php include "./settings.php"; ?>
+<?php include "./help.php"; ?>

@@ -8,16 +8,16 @@
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$base_url = $client_id = $client_secret = $sos_key = $scope = '';
+$base_url = $client_id = $client_secret = $sos_key = $scope = $server_url = '';
 
 if ($settings) {
     $base_url = decryptData($settings['base_url'], SECRET_KEY);
     $client_id = decryptData($settings['client_id'], SECRET_KEY);
     $client_secret = decryptData($settings['client_secret'], SECRET_KEY);
     $sos_key = decryptData($settings['sos_key'], SECRET_KEY);
+    $server_url = decryptData($settings['server_url'], SECRET_KEY);
     $scope = decryptData($settings['scope'], SECRET_KEY);
 }
-
 ?>
 <?php require_once "./inc/header.php"; ?>
 <div class="row">
@@ -33,8 +33,13 @@ if ($settings) {
         <form action="settings_save.php" method="POST">
 
             <div class="mb-3">
-                <label for="base_url" class="form-label">Base URL</label>
+                <label for="base_url" class="form-label">Base URL (GHL Market Place)</label>
                 <input type="text" class="form-control" id="base_url" name="base_url" value="<?php echo $base_url; ?>" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="server_url" class="form-label">Server URL / IP (Where applet is deployed)</label>
+                <input type="text" class="form-control" id="server_url" name="server_url" value="<?php echo $server_url; ?>"  required>
             </div>
 
             <div class="mb-3">
@@ -53,7 +58,7 @@ if ($settings) {
             </div>
 
             <div class="mb-3">
-                <label for="scope" class="form-label">Scope</label>
+                <label for="scope" class="form-label">Scope (each scope separated by a space, without any quots)</label>
                 <textarea class="form-control" id="scope" name="scope" rows="4"><?php echo $scope; ?></textarea>
             </div>
 

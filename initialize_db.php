@@ -1,9 +1,8 @@
 <?php
-/**
- * setup.php - Initialize SQLite tables and insert default data.
- */
-
-require_once "./inc/db.php";
+require './inc/auth.php';
+require './inc/functions.php';
+require './inc/db.php';
+require './configs.php';
 
 try {
     // Begin transaction
@@ -40,6 +39,7 @@ try {
             CREATE TABLE settings (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 base_url TEXT NOT NULL,
+                server_url TEXT NOT NULL,
                 client_id TEXT NOT NULL,
                 client_secret TEXT NOT NULL,
                 sos_key TEXT NOT NULL,
@@ -50,7 +50,8 @@ try {
 
     // Commit transaction
     $pdo->commit();
-    echo "Database tables have been created (if needed) and default user has been added.";
+    $_SESSION['msg'] = "Database tables have been created (if needed) and default user has been added.";
+    header('Location:./');
 
 } catch (PDOException $e) {
     // Rollback on error

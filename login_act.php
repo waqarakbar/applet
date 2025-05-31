@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $username;
         $_SESSION['msg'] = "Login successfull";
-        header('Location: settings.php');
+        header('Location: ./');
         exit;
     } else {
         // Login failed

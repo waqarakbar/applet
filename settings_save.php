@@ -9,6 +9,7 @@ require './configs.php';
 
 // Encrypt data
 $base_url = encryptData($_POST['base_url'], SECRET_KEY);
+$server_url = encryptData($_POST['server_url'], SECRET_KEY);
 $client_id = encryptData($_POST['client_id'], SECRET_KEY);
 $client_secret = encryptData($_POST['client_secret'], SECRET_KEY);
 $sos_key = encryptData($_POST['sos_key'], SECRET_KEY);
@@ -21,6 +22,7 @@ if ($result->fetchColumn()) {
     $stmt = $pdo->prepare("
             UPDATE settings SET
                 base_url = :base_url,
+                server_url = :server_url,
                 client_id = :client_id,
                 client_secret = :client_secret,
                 sos_key = :sos_key,
@@ -30,13 +32,14 @@ if ($result->fetchColumn()) {
 } else {
     // Insert new settings
     $stmt = $pdo->prepare("
-            INSERT INTO settings (id, base_url, client_id, client_secret, sos_key, scope)
-            VALUES (1, :base_url, :client_id, :client_secret, :sos_key, :scope)
+            INSERT INTO settings (id, base_url, server_url, client_id, client_secret, sos_key, scope)
+            VALUES (1, :base_url, :server_url, :client_id, :client_secret, :sos_key, :scope)
         ");
 }
 
 $stmt->execute([
     ':base_url' => $base_url,
+    ':server_url' => $server_url,
     ':client_id' => $client_id,
     ':client_secret' => $client_secret,
     ':sos_key' => $sos_key,
