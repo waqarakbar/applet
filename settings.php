@@ -8,7 +8,7 @@
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$base_url = $client_id = $client_secret = $sos_key = $scope = $server_url = '';
+$base_url = $client_id = $client_secret = $sos_key = $scope = $server_url = $start_date = '';
 
 if ($settings) {
     $base_url = decryptData($settings['base_url'], SECRET_KEY);

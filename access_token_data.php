@@ -8,7 +8,7 @@
 $stmt = $pdo->query("SELECT * FROM settings LIMIT 1");
 $settings = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$base_url = $client_id = $client_secret = $sos_key = $scope = $server_url = '';
+$base_url = $client_id = $client_secret = $sos_key = $scope = $server_url = $start_date = '';
 
 if ($settings) {
     $base_url = decryptData($settings['base_url'], SECRET_KEY);
@@ -16,6 +16,7 @@ if ($settings) {
     $client_id = decryptData($settings['client_id'], SECRET_KEY);
     $client_secret = decryptData($settings['client_secret'], SECRET_KEY);
     $sos_key = decryptData($settings['sos_key'], SECRET_KEY);
+    $start_date = $settings['start_date'];
     $scope = decryptData($settings['scope'], SECRET_KEY);
 }else{
     $_SESSION['msg'] = "Invalid settings, please update your settings and try again";
@@ -147,7 +148,7 @@ $post_data = http_build_query($data);
                     <span id="msg<?php echo $sn; ?>" style="color: green"></span>
             </label>
             <br>
-            <textarea name="" class="gt_data form-control" id="textarea<?php echo $sn; ?>" cols="100" rows="1">2021-01-01T00:00:00Z</textarea>
+            <textarea name="" class="gt_data form-control" id="textarea<?php echo $sn; ?>" cols="100" rows="1"><?php echo $start_date; ?>T00:00:00Z</textarea>
         </div>
     </div>
     <?php $sn++; ?>

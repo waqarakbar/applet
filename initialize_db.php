@@ -43,6 +43,7 @@ try {
                 client_id TEXT NOT NULL,
                 client_secret TEXT NOT NULL,
                 sos_key TEXT NOT NULL,
+                start_date TEXT,
                 scope TEXT
             )
         ");
