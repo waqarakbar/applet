@@ -1,5 +1,5 @@
 <?php
-require './inc/auth.php';
+// require './inc/auth.php';
 require './inc/functions.php';
 require './inc/db.php';
 require './configs.php';
