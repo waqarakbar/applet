@@ -81,6 +81,8 @@ if ($response_data === null) {
     die('!');
 }
 
+print_r($response_data);
+
 ?>
 <?php require_once "./inc/header.php"; ?>
 <div class="row">
